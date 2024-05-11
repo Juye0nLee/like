@@ -36,6 +36,6 @@
         Entity를 생성할 때 @SequenceGenerator를 사용
         @SequenceGenerator에는 다양한 속성이 있는데
         그 중에서 **allocationSize**가 기본값이 50이기 때문에 해당 속성을 1로 설정하지 않을 시, sequence 호출 시마다 50씩 증가된 것 이었다.
-    - 레퍼런스 : <https://velog.io/@gillog/JPA-기본-키-생성-전략IDENTITY-SEQUENCE-TABLE>
+    - 참조 : <https://velog.io/@gillog/JPA-기본-키-생성-전략IDENTITY-SEQUENCE-TABLE>
   - ### createAt이 null로 나옴
     - Progress
