@@ -39,3 +39,9 @@
     - 참조 : <https://velog.io/@gillog/JPA-기본-키-생성-전략IDENTITY-SEQUENCE-TABLE>
   - ### createAt이 null로 나옴
     - Progress
+
+✨ 로그인 기능 구현
+==================
+ ## 🐛 이슈
+ - ### createAt이 null로 나옴
+   - Progress

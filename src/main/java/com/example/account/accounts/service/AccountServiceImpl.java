@@ -1,6 +1,7 @@
 package com.example.account.accounts.service;
 
 import com.example.account.accounts.dto.AccountCreateDto;
+import com.example.account.accounts.dto.AccountEnterDto;
 import com.example.account.accounts.repository.AccountRepository;
 import com.example.account.domain.Account;
 import com.example.account.util.response.CustomApiResponse;
@@ -9,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,8 +30,34 @@ public class AccountServiceImpl implements AccountService {
         Account savedAccount = accountRepository.save(account);
 
         //응답 구현
-        AccountCreateDto.CreateAccount createAccountResponse = new AccountCreateDto.CreateAccount(savedAccount.getId(),savedAccount.getUpdatedAt());
+        AccountCreateDto.CreateAccount createAccountResponse = new AccountCreateDto.CreateAccount(savedAccount.getId(),savedAccount.getCreatedAt());
         CustomApiResponse<AccountCreateDto.CreateAccount> res = CustomApiResponse.createSuccess(HttpStatus.OK.value(),createAccountResponse,"회원가입 성공");
         return ResponseEntity.ok(res);
+    }
+
+    @Override
+    //로그인
+    // 1.  body로 받은 req가 DB에 존재하는지 검색
+    // 2.
+    public ResponseEntity<CustomApiResponse<?>> login(AccountEnterDto req){
+        //찾기
+        Optional<Account> optionalAccount = accountRepository.findByUserId(req.getUserId());
+        //해당 아이디가 존재하지 않을 때
+        if(optionalAccount.isEmpty()) {
+            CustomApiResponse<Void> res =  CustomApiResponse.createFailWithoutData(HttpStatus.NOT_FOUND.value(), "존재하지 않는 회원입니다.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res);
+        }
+
+        Account account = optionalAccount.get();
+        //비밀번호가 일치하지 않을 때
+        if(!account.getPassword().equals(req.getPassword())){
+            CustomApiResponse<Void> res = CustomApiResponse.createFailWithoutData(HttpStatus.NOT_FOUND.value(), "비밀번호가 일치하지 않습니다.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res);
+        }
+
+        AccountEnterDto.AccountEnter accountEnter = new AccountEnterDto.AccountEnter(account.getId(), account.getCreatedAt());
+        //로그인
+        CustomApiResponse<AccountEnterDto.AccountEnter> res = CustomApiResponse.createSuccess(HttpStatus.OK.value(),accountEnter,"로그인 성공");
+        return ResponseEntity.status(HttpStatus.OK).body(res);
     }
 }
