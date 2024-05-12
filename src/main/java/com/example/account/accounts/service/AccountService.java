@@ -12,4 +12,7 @@ public interface AccountService {
 
     //로그인
     ResponseEntity<CustomApiResponse<?>> login(AccountEnterDto req);
+
+    //탈퇴
+    ResponseEntity<CustomApiResponse<?>> withdraw(Long userId);
 }

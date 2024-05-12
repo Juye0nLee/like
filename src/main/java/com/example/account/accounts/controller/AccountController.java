@@ -8,10 +8,7 @@ import com.example.account.util.response.CustomApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,6 +27,14 @@ public class AccountController {
     public ResponseEntity<CustomApiResponse<?>> login(@RequestBody AccountEnterDto req){
         //AccountEnterDto res = new AccountEnterDto();
         ResponseEntity<CustomApiResponse<?>> result = accountService.login(req);
+        return result;
+    }
+
+    //회원 탈퇴
+    //Delete 메서드는 @RequestBody를 지원하지 않음
+    @DeleteMapping("/withdraw")
+    public ResponseEntity<CustomApiResponse<?>> withdraw(@RequestParam Long userId){
+        ResponseEntity<CustomApiResponse<?>> result = accountService.withdraw(userId);
         return result;
     }
 }

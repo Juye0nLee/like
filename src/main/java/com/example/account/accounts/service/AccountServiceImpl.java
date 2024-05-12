@@ -60,4 +60,14 @@ public class AccountServiceImpl implements AccountService {
         CustomApiResponse<AccountEnterDto.AccountEnter> res = CustomApiResponse.createSuccess(HttpStatus.OK.value(),accountEnter,"로그인 성공");
         return ResponseEntity.status(HttpStatus.OK).body(res);
     }
+
+    //회원 탈퇴
+    @Override
+    public ResponseEntity<CustomApiResponse<?>> withdraw(Long userId) {
+         //삭제
+         accountRepository.deleteById(userId);
+
+         CustomApiResponse<AccountListDto.DeleteAccount> res = CustomApiResponse.createSuccess(HttpStatus.OK.value(),null,"회원탈퇴가 완료되었습니다." );
+         return ResponseEntity.status(HttpStatus.OK).body(res);
+    }
 }
