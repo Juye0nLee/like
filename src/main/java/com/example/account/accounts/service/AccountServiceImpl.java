@@ -67,7 +67,7 @@ public class AccountServiceImpl implements AccountService {
          //삭제
          accountRepository.deleteById(userId);
 
-         CustomApiResponse<AccountListDto.DeleteAccount> res = CustomApiResponse.createSuccess(HttpStatus.OK.value(),null,"회원탈퇴가 완료되었습니다." );
+         CustomApiResponse<CustomApiResponse<?>> res = CustomApiResponse.createSuccess(HttpStatus.OK.value(),null,"회원탈퇴가 완료되었습니다." );
          return ResponseEntity.status(HttpStatus.OK).body(res);
     }
 }

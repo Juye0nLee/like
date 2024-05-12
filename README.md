@@ -1,7 +1,7 @@
 ✨ 회원가입 구현
 ====================
 - ## 📚 공부
-  - ### 전화번호 형식 검증
+  - 전화번호 형식 검증
     - @Pattern : 형식을 검증하는 어노테이션
     - ```@Pattern(regexp = "\\d{3}\\d{4}\\d{4}",message = "전화번호 형식을 맞춰주세요")```
 - ## 🐛 이슈
@@ -42,19 +42,21 @@
 
 ✨ 로그인 기능 구현
 ==================
- ## 🐛 이슈
- - ### createAt이 null로 나옴
-   - Progress
+- ## 📚 공부
 
-✨ 회원 탈퇴 기능 구현
-=====================
+ - ## 🐛 이슈
+   - ### createAt이 null로 나옴
+     - Progress
+
+✨ 회원탈퇴 기능 구현 
 - ## 📚 공부
   - ### JpaRepository
-    - 내일 정리할래...졸려...
+    - 내일 정리할래..졸려..
 - ## 🐛 이슈
-  - ### 400 BAD_REQUEST 에러 발생
-    - Done(2024.05.12)
-      - 회원탈퇴 컨트롤러 부분에서 userId를 @RequestBody로 해놔서 오류가 발생한 것이었다.
-      - **HTTP DELETE 메소드는 Request Body를 지원하지 않기 때문에** Path나 쿼리 파라미터 방식을 통해 요청 데이터를 전달해야함!
-      - 따라서 <u>@RequestParam</u> 로 바꾸었더니 정상 동작👏🏻👏🏻
-
+  - ### 400 BAD_REQUEST 오류 발생
+    - Done (2024.05.12)
+      - ***요청 보낼 데이터를 @RequestBody로 Body로 넣어서 보내려고 했기 때문에*** 발생한 오류
+      - HTTP DELETE 메소드는 Request Body를 지원하지 않음
+      - 주로 **Path나 쿼리 파라미터**를 통해 요청 데이터 전달
+      - <u>@RequestParam</u>로 바꿔서 요청 URL를 ```http://localhost:8080/api/member/withdraw?userId=1``` 이렇게 했더니 해결👏🏻👏🏻
+      - <u>@PathVariable</u>로도 바꿔서 요청 URL를 ```http://localhost:8080/api/member/withdraw/1``` 이렇게 했을 때도 성공 👏🏻👏🏻
