@@ -66,7 +66,12 @@ public class AccountServiceImpl implements AccountService {
     public ResponseEntity<CustomApiResponse<?>> withdraw(Long userId) {
          //삭제
          accountRepository.deleteById(userId);
-
+         Optional<Account> optionalAccount = accountRepository.findById(userId);
+//         // 해당 userId를 가진 회원이 존재하지 않는 경우
+//        if(optionalAccount.isEmpty()) {
+//            CustomApiResponse<Void> res = CustomApiResponse.createFailWithoutData(HttpStatus.NOT_FOUND.value(), "해당 userId를 가진 회원은 존재하지 않습니다.");
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res);
+//        }
          CustomApiResponse<CustomApiResponse<?>> res = CustomApiResponse.createSuccess(HttpStatus.OK.value(),null,"회원탈퇴가 완료되었습니다." );
          return ResponseEntity.status(HttpStatus.OK).body(res);
     }
