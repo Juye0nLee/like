@@ -20,9 +20,9 @@ public class AccountEnterDto {
         @NoArgsConstructor
         public static class AccountEnter {
             private Long id;
-            private LocalDateTime updateTime;
-            public AccountEnter(Long id,LocalDateTime updateTime) {
-                this.updateTime = updateTime;
+            private LocalDateTime createAt;
+            public AccountEnter(Long id,LocalDateTime createAt) {
+                this.createAt = createAt;
                 this.id = id;
             }
         }

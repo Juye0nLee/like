@@ -54,11 +54,11 @@ public class AccountCreateDto {
     @Builder
     //계정 생성 : id, createdAt
     public static class CreateAccount{
-        private Long postId;
+        private Long id;
         private LocalDateTime createAt;
 
-        public CreateAccount(Long postId, LocalDateTime createAt) {
-            this.postId = postId;
+        public CreateAccount(Long id, LocalDateTime createAt) {
+            this.id = id;
             this.createAt = createAt;
         }
     }
