@@ -4,6 +4,13 @@
   - 전화번호 형식 검증
     - @Pattern : 형식을 검증하는 어노테이션
     - ```@Pattern(regexp = "\\d{3}\\d{4}\\d{4}",message = "전화번호 형식을 맞춰주세요")```
+  - @EnableJpaAuditing
+    - 데이터를 생성하거나 수정할 때, 누가, 언제했는지를 알기 위해서 보통은
+      ``` createAt(생성일자), modifiedAt(수정일자), createdBy(생성자), modifiedBy(수정자)```
+      이런 필드를 각 테이블에 같이 포함시켜서 테이블을 생성한다.
+    - 하지만 매번 이렇게 코드를 작성하는 것은 귀찮고 번거로움!
+    -  **<u>@EnableJpaAuditing 어노테이션을 활용하면 엔티티 객체가 생성이 되거나 변경이 되었을 때 자동으로 값을 등록할 수 있다. </u>**
+    - 참고 : <https://velog.io/@kdohyeon/Spring-EnableJpaAuditing>
 - ## 🐛 이슈
   - ### 프로젝트를 중지 했다가 다시 실행하면 ID가 50씩 증가되었다
     - Done (2024.05.11)
@@ -40,15 +47,21 @@
   - ### createAt이 null로 나옴
     - Done(2024.05.16)
       - AccountApplication 클래스에 **<u>@EnableJpaAuditing</u>** 어노테이션을 달았더니 해결
-      - 
 
 ✨ 로그인 기능 구현
 ==================
 - ## 📚 공부
-
+  - @EnableJpaAuditing
+    - 데이터를 생성하거나 수정할 때, 누가, 언제했는지를 알기 위해서 보통은
+      ``` createAt(생성일자), modifiedAt(수정일자), createdBy(생성자), modifiedBy(수정자)```
+      이런 필드를 각 테이블에 같이 포함시켜서 테이블을 생성한다.
+    - 하지만 매번 이렇게 코드를 작성하는 것은 귀찮고 번거로움!
+    -  **<u>@EnableJpaAuditing 어노테이션을 활용하면 엔티티 객체가 생성이 되거나 변경이 되었을 때 자동으로 값을 등록할 수 있다. </u>**
+    - 참고 : <https://velog.io/@kdohyeon/Spring-EnableJpaAuditing>
  - ## 🐛 이슈
    - ### createAt이 null로 나옴
-     - Progress
+     - Done (2024.05.16)
+       - AccountApplication 클래스에 **<u>@EnableJpaAuditing</u>** 어노테이션을 달았더니 해결
 
 ✨ 회원탈퇴 기능 구현 
 =====================
