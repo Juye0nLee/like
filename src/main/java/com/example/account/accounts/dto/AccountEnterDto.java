@@ -16,7 +16,8 @@ public class AccountEnterDto {
         @NotBlank(message = "비밀번호를 입력해주세요")
         private String password;
 
-        @Getter
+        //불필요한듯
+/*        @Getter
         @NoArgsConstructor
         public static class AccountEnter {
             private Long id;
@@ -25,5 +26,5 @@ public class AccountEnterDto {
                 this.createAt = createAt;
                 this.id = id;
             }
-        }
+        }*/
 }

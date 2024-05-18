@@ -49,17 +49,14 @@ public class AccountCreateDto {
         }*/
     }
 
-    @Getter
+    //불필요한 코드
+/*    @Getter
     @NoArgsConstructor
-    @Builder
+    //@Builder
     //계정 생성 : id, createdAt
     public static class CreateAccount{
         private Long id;
         private LocalDateTime createAt;
 
-        public CreateAccount(Long id, LocalDateTime createAt) {
-            this.id = id;
-            this.createAt = createAt;
-        }
-    }
+    }*/
 }

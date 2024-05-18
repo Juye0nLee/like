@@ -5,7 +5,6 @@ import com.example.account.accounts.dto.AccountEnterDto;
 import com.example.account.accounts.repository.AccountRepository;
 import com.example.account.domain.Account;
 import com.example.account.util.response.CustomApiResponse;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,6 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Builder
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
 
@@ -30,8 +28,10 @@ public class AccountServiceImpl implements AccountService {
         Account savedAccount = accountRepository.save(account);
 
         //응답 구현
-        AccountCreateDto.CreateAccount createAccountResponse = new AccountCreateDto.CreateAccount(savedAccount.getId(),savedAccount.getCreatedAt());
-        CustomApiResponse<AccountCreateDto.CreateAccount> res = CustomApiResponse.createSuccess(HttpStatus.OK.value(),createAccountResponse,"회원가입 성공");
+
+        //불필요
+       // AccountCreateDto.CreateAccount createAccountResponse = new AccountCreateDto.CreateAccount();
+        CustomApiResponse<AccountCreateDto> res = CustomApiResponse.createSuccess(HttpStatus.OK.value(),null,"회원가입 성공");
         return ResponseEntity.ok(res);
     }
 
@@ -55,9 +55,9 @@ public class AccountServiceImpl implements AccountService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res);
         }
 
-        AccountEnterDto.AccountEnter accountEnter = new AccountEnterDto.AccountEnter(account.getId(), account.getCreatedAt());
+        //AccountEnterDto.AccountEnter accountEnter = new AccountEnterDto.AccountEnter(account.getId(), account.getCreatedAt());
         //로그인
-        CustomApiResponse<AccountEnterDto.AccountEnter> res = CustomApiResponse.createSuccess(HttpStatus.OK.value(),accountEnter,"로그인 성공");
+        CustomApiResponse<AccountEnterDto> res = CustomApiResponse.createSuccess(HttpStatus.OK.value(),null,"로그인 성공");
         return ResponseEntity.status(HttpStatus.OK).body(res);
     }
 

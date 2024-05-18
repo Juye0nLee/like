@@ -32,8 +32,8 @@ public class AccountController {
 
     //회원 탈퇴
     //Delete 메서드는 @RequestBody를 지원하지 않음
-    @DeleteMapping("/withdraw")
-    public ResponseEntity<CustomApiResponse<?>> withdraw(@RequestParam Long userId){
+    @DeleteMapping("/withdraw/{userId}")
+    public ResponseEntity<CustomApiResponse<?>> withdraw(@PathVariable("userId") Long userId){
         ResponseEntity<CustomApiResponse<?>> result = accountService.withdraw(userId);
         return result;
     }
